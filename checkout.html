@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Store - Checkout</title>
+    <style>
+        :root {
+    --primary-color: #2c3e50;
+    --accent-color: #e67e22;
+    --bg-color: #f8f9fa;
+    --border-color: #ddd;
+    --error-color: #e74c3c;
+    --text-color: #333;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    padding: 40px 20px;
+}
+
+.checkout-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 30px;
+}
+
+@media (max-width: 768px) {
+    .checkout-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+main, aside {
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+}
+
+h2 {
+    color: var(--primary-color);
+    margin-bottom: 20px;
+    border-bottom: 2px solid var(--bg-color);
+    padding-bottom: 10px;
+}
+
+.payment-title {
+    margin-top: 30px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+label {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+input {
+    padding: 10px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    font-size: 15px;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+input:focus {
+    border-color: var(--primary-color);
+}
+
+input.invalid {
+    border-color: var(--error-color);
+}
+
+.error-message {
+    color: var(--error-color);
+    font-size: 12px;
+    margin-top: 5px;
+    display: none;
+}
+
+.submit-btn {
+    width: 100%;
+    background-color: var(--primary-color);
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background-color 0.2s;
+}
+
+.submit-btn:hover {
+    background-color: #1a252f;
+}
+
+/* Order Summary Styles */
+.book-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px dashed var(--border-color);
+}
+
+.book-details h4 {
+    font-size: 15px;
+    color: var(--primary-color);
+}
+
+.book-details p {
+    font-size: 13px;
+    color: #7f8c8d;
+}
+
+.book-price {
+    font-weight: bold;
+}
+
+.promo-code-container {
+    display: flex;
+    gap: 10px;
+    margin: 20px 0;
+}
+
+.promo-code-container input {
+    flex: 1;
+}
+
+#applyPromoBtn {
+    background-color: #95a5a6;
+    color: white;
+    border: none;
+    padding: 0 15px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#applyPromoBtn:hover {
+    background-color: #7f8c8d;
+}
+
+.price-breakdown {
+    margin-top: 20px;
+}
+
+.price-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+
+.discount-row {
+    color: #27ae60;
+    font-weight: 600;
+}
+
+.total-row {
+    font-size: 18px;
+    font-weight: bold;
+    color: var(--primary-color);
+    margin-top: 10px;
+}
+
+hr {
+    border: 0;
+    border-top: 1px solid var(--border-color);
+    margin: 10px 0;
+}
+
+.hidden {
+    display: none !important;
+}
+
+    </style>
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body>
+    
+    <div class="checkout-container">
+        
+        <!-- Left Column: Checkout Form -->
+        <main class="checkout-form-section">
+            <h2>Billing & Shipping Details</h2>
+            <form id="checkoutForm" novalidate>
+                <div class="form-group">
+                    <label for="fullName">Full Name</label>
+                    <input type="text" id="fullName" required placeholder="John Doe">
+                    <span class="error-message" id="nameError">Name is required.</span>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" required placeholder="john@example.com">
+                    <span class="error-message" id="emailError">Please enter a valid email address.</span>
+                </div>
+
+                <div class="form-group">
+                    <label for="address">Shipping Address</label>
+                    <input type="text" id="address" required placeholder="123 Bookworm Lane">
+                    <span class="error-message" id="addressError">Shipping address is required.</span>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="city">City</label>
+                        <input type="text" id="city" required placeholder="New York">
+                    </div>
+                    <div class="form-group">
+                        <label for="zipCode">Zip Code</label>
+                        <input type="text" id="zipCode" required placeholder="10001">
+                    </div>
+                </div>
+
+                <h2 class="payment-title">Payment Method</h2>
+                <div class="form-group">
+                    <label for="cardNumber">Card Number</label>
+                    <input type="text" id="cardNumber" required placeholder="1234 5678 1234 5678" maxlength="19">
+                    <span class="error-message" id="cardError">Enter a valid 16-digit card number.</span>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="expDate">Expiry Date</label>
+                        <input type="text" id="expDate" required placeholder="MM/YY" maxlength="5">
+                    </div>
+                    <div class="form-group">
+                        <label for="cvv">CVV</label>
+                        <input type="password" id="cvv" required placeholder="123" maxlength="3">
+                    </div>
+                </div>
+
+                <button type="submit" class="submit-btn">Place Order</button>
+            </form>
+        </main>
+
+        <!-- Right Column: Order Summary -->
+        <aside class="order-summary-section">
+            <h2>Your Order</h2>
+            <div class="book-items-list" id="booksList">
+                <!-- Dynamically generated by JS -->
+            </div>
+
+            <div class="promo-code-container">
+                <input type="text" id="promoInput" placeholder="Promo Code">
+                <button type="button" id="applyPromoBtn">Apply</button>
+            </div>
+
+            <div class="price-breakdown">
+                <div class="price-row">
+                    <span>Subtotal</span>
+                    <span id="subtotalCost">$0.00</span>
+                </div>
+                <div class="price-row">
+                    <span>Shipping</span>
+                    <span id="shippingCost">$0.00</span>
+                </div>
+                <div class="price-row discount-row hidden" id="discountRow">
+                    <span>Discount (10%)</span>
+                    <span id="discountCost">-$0.00</span>
+                </div>
+                <hr>
+                <div class="price-row total-row">
+                    <span>Total</span>
+                    <span id="totalCost">$0.00</span>
+                </div>
+                <p class="btn btn-primary"><a href="./index.html" class="nav-brand"><i class="fa-solid fa-book-open"></i> 📚 Home Page
+                    </a></p>
+            </div>
+        </aside>
+    </div>
+    
+
+    <script>
+        // Mock Cart Data for Bookstore
+            const cartItems = [
+                { title: "The Great Gatsby", author: "F. Scott Fitzgerald", price: 14.99, qty: 1 },
+                { title: "To Kill a Mockingbird", author: "Harper Lee", price: 12.49, qty: 2 },
+                { title: "Atomic Habits", author: "James Clear", price: 21.00, qty: 1 }
+            ];
+
+            let appliedDiscount = 0;
+            const shippingCostRate = 4.99;
+
+            document.addEventListener("DOMContentLoaded", () => {
+                renderOrderSummary();
+                setupEventListeners();
+            });
+
+            function renderOrderSummary() {
+                const listContainer = document.getElementById("booksList");
+                listContainer.innerHTML = "";
+
+                let subtotal = 0;
+
+                cartItems.forEach(item => {
+                    const itemTotal = item.price * item.qty;
+                    subtotal += itemTotal;
+
+                    const bookDiv = document.createElement("div");
+                    bookDiv.className = "book-item";
+                    bookDiv.innerHTML = `
+            <div class="book-details">
+                <h4>${item.title}</h4>
+                <p>By ${item.author} (x${item.qty})</p>
+            </div>
+            <span class="book-price">$${itemTotal.toFixed(2)}</span>
+        `;
+                    listContainer.appendChild(bookDiv);
+                });
+
+                calculateTotals(subtotal);
+            }
+
+            function calculateTotals(subtotal) {
+                const discount = subtotal * appliedDiscount;
+                const total = subtotal + shippingCostRate - discount;
+
+                document.getElementById("subtotalCost").textContent = `$${subtotal.toFixed(2)}`;
+                document.getElementById("shippingCost").textContent = `$${shippingCostRate.toFixed(2)}`;
+                document.getElementById("totalCost").textContent = `$${total.toFixed(2)}`;
+
+                const discountRow = document.getElementById("discountRow");
+                if (appliedDiscount > 0) {
+                    document.getElementById("discountCost").textContent = `-$${discount.toFixed(2)}`;
+                    discountRow.classList.remove("hidden");
+                } else {
+                    discountRow.classList.add("hidden");
+                }
+            }
+
+            function setupEventListeners() {
+                const form = document.getElementById("checkoutForm");
+
+                // Promo Code Application
+                document.getElementById("applyPromoBtn").addEventListener("click", () => {
+                    const code = document.getElementById("promoInput").value.trim().toUpperCase();
+                    if (code === "BOOKWORM10") {
+                        appliedDiscount = 0.10; // 10% off
+                        alert("Promo code applied successfully!");
+                        renderOrderSummary();
+                    } else {
+                        alert("Invalid promo code. Try 'BOOKWORM10'");
+                    }
+                });
+
+                // Form Submission Validation
+                form.addEventListener("submit", (e) => {
+                    e.preventDefault();
+                    let isValid = true;
+
+                    // Reset error displays
+                    document.querySelectorAll(".error-message").forEach(el => el.style.display = "none");
+                    document.querySelectorAll("input").forEach(input => input.classList.remove("invalid"));
+
+                    // Basic Name Check
+                    if (!document.getElementById("fullName").value.trim()) {
+                        showError("fullName", "nameError");
+                        isValid = false;
+                    }
+
+                    // Email Validation
+                    const email = document.getElementById("email").value.trim();
+                    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                    if (!emailRegex.test(email)) {
+                        showError("email", "emailError");
+                        isValid = false;
+                    }
+
+                    // Address Check
+                    if (!document.getElementById("address").value.trim()) {
+                        showError("address", "addressError");
+                        isValid = false;
+                    }
+
+                    // Card validation (Basic 16 digit check)
+                    const cardNum = document.getElementById("cardNumber").value.replace(/\s+/g, '');
+                    if (cardNum.length !== 16 || isNaN(cardNum)) {
+                        showError("cardNumber", "cardError");
+                        isValid = false;
+                    }
+
+                    if (isValid) {
+                        alert("Thank you for your purchase! Your book order has been processed.");
+                        form.reset();
+                        appliedDiscount = 0;
+                        renderOrderSummary();
+                    }
+                });
+
+                // Auto-format card input with spaces
+                document.getElementById("cardNumber").addEventListener("input", (e) => {
+                    let value = e.target.value.replace(/\s+/g, '').replace(/[^0-9]/gi, '');
+                    let matches = value.match(/\d{4,16}/g);
+                    let match = matches && matches[0] || '';
+                    let parts = [];
+
+                    for (let i = 0, len = match.length; i < len; i += 4) {
+                        parts.push(match.substring(i, i + 4));
+                    }
+
+                    if (parts.length > 0) {
+                        e.target.value = parts.join(' ');
+                    } else {
+                        e.target.value = value;
+                    }
+                });
+            }
+
+            function showError(inputId, errorId) {
+                document.getElementById(inputId).classList.add("invalid");
+                document.getElementById(errorId).style.display = "block";
+            }
+
+    </script>
+    <script src="script.js"></script>
+</body>
+
+</html>

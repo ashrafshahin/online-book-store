@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BookStore - Browse Books</title>
+    <style>
+        /* Global Reset & Base Variables */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #f7f9fa;
+    color: #333;
+}
+
+/* Navbar Design */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #1a252f;
+    color: white;
+    padding: 1rem 5%;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+#cart-count {
+    background-color: #e74c3c;
+    color: white;
+    padding: 2px 8px;
+    border-radius: 50%;
+    font-size: 0.85rem;
+    margin-left: 5px;
+}
+
+/* Master Layout Structure */
+.container {
+    display: grid;
+    grid-template-columns: 250px 1fr;
+    gap: 30px;
+    padding: 30px 5%;
+}
+
+/* Sidebar Styling */
+.controls {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    height: fit-content;
+}
+
+#search-input, #category-filter {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 0.95rem;
+}
+
+.filter-group h3 {
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+}
+
+/* Dynamic Books Grid Layout */
+.books-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 25px;
+    margin-top: 20px;
+}
+
+/* Individual Book Card Designs */
+.book-card {
+    background: white;
+    border-radius: 8px;
+    padding: 15px;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    transition: transform 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.book-card:hover {
+    transform: translateY(-5px);
+}
+
+.book-cover {
+    width: 100%;
+    height: 260px;
+    background-color: #eaeaea;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #777;
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+.book-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.book-author {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 10px;
+}
+
+.book-price {
+    font-size: 1.2rem;
+    color: #2c3e50;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.btn-add-cart {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    width: 100%;
+    transition: background 0.2s;
+}
+
+.btn-add-cart:hover {
+    background-color: #2980b9;
+}
+
+/* Responsive Structural Overrides */
+@media (max-width: 768px) {
+    .container {
+        grid-template-columns: 1fr;
+    }
+}
+
+    </style>
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body>
+
+    <!-- Header Navigation -->
+    <nav class="navbar">
+        <a href="#" class="nav-brand"><i class="fa-solid fa-book-open"></i>Online Book Store </a>
+    
+        <div class="hamburger" id="mobile-menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    
+        <ul class="nav-links" id="nav-list">
+            <li><a href="index.html" class="active"><i class="fa-solid fa-house"></i> Home</a></li>
+            <li><a href="books.html"><i class="fa-solid fa-book"></i> Books</a></li>
+            <li><a href="user.html"><i class="fa-solid fa-book"></i> My Profile</a></li>
+            <li><a href="admin.html"><i class="fa-solid fa-book"></i> Admin</a></li>
+            <li>
+                <a href="#cart" class="cart-icon-container">
+                    <i class="fa-solid fa-cart-shopping"></i> Cart
+                    <span class="cart-badge" id="cart-count">3</span>
+                </a>
+            </li>
+            <li><a href="#checkout"><i class="fa-solid fa-credit-card"></i> Checkout</a></li>
+            <li><a href="login.html" class="btn-login"><i class="fa-solid fa-right-to-bracket"></i> Login</a></li>
+            <li><a href="register.html" class="btn-register"><i class="fa-solid fa-user-plus"></i> Register</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Content Container -->
+    <main class="container">
+
+        <!-- Sidebar Controls -->
+        <aside class="controls">
+            <input type="text" id="search-input" placeholder="Search by title or author...">
+
+            <div class="filter-group">
+                <h3>Category</h3>
+                <select id="category-filter">
+                    <option value="all">All Genres</option>
+                    <option value="fiction">Fiction</option>
+                    <option value="sci-fi">Sci-Fi</option>
+                    <option value="tech">Technology</option>
+                </select>
+            </div>
+        </aside>
+
+        <!-- Books Grid Showcase -->
+        <section class="books-display">
+            <h2>Our Collection</h2>
+            <div id="books-grid" class="books-grid">
+                <!-- Books will be injected dynamically by JavaScript -->
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bookstore-footer">
+        <div class="footer-container">
+            <div class="footer-col">
+                <h3>ChapterOne</h3>
+                <p>Your favorite destination for discovering new books, timeless classics, and cozy reads.</p>
+            </div>
+    
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="books.html">Books</a></li>
+                    <li><a href="login.html">Login</a></li>
+                    <li><a href="register.html">Register</a></li>
+                </ul>
+            </div>
+    
+            <div class="footer-col">
+                <h4>Shopping</h4>
+                <ul>
+                    <li><a href="cart.html">My Cart</a></li>
+                    <li><a href="checkout.html">Checkout</a></li>
+                    <li><a href="account.html">My Account</a></li>
+                </ul>
+            </div>
+    
+            <div class="footer-col">
+                <h4>Newsletter</h4>
+                <p>Get weekly book recommendations and special discounts.</p>
+                <form id="newsletter-form">
+                    <input type="email" id="newsletter-email" placeholder="Enter your email" required>
+                    <button type="submit">Subscribe</button>
+                </form>
+                <span id="newsletter-msg" style="font-size: 0.8rem; margin-top: 5px; display: block;"></span>
+            </div>
+        </div>
+    
+        <div class="footer-bottom">
+            <p>&copy; <span id="current-year"></span> Online Book Store. All rights reserved. | Powered by Ashraf Shahin</p>
+        </div>
+    </footer>
+    
+    
+    <script src="./js/bootstrap.bundle.min.js"></script>
+    <script src="./js/popper.min.js"></script>
+    <script src="./js/bootstrap.min.js"></script>
+    <script src="./js/script.js"></script>
+    <script>
+        // Local mock data repository containing product metadata
+            const booksData = [
+                { id: 1, title: "The Great Gatsby", author: "F. Scott Fitzgerald", price: 10.99, category: "fiction" },
+                { id: 2, title: "Dune", author: "Frank Herbert", price: 14.99, category: "sci-fi" },
+                { id: 3, title: "JavaScript: The Good Parts", author: "Douglas Crockford", price: 29.99, category: "tech" },
+                { id: 4, title: "To Kill a Mockingbird", author: "Harper Lee", price: 12.50, category: "fiction" },
+                { id: 5, title: "Neuromancer", author: "William Gibson", price: 15.99, category: "sci-fi" },
+                { id: 6, title: "Eloquent JavaScript", author: "Marijn Haverbeke", price: 34.95, category: "tech" }
+            ];
+
+            let cartCount = 0;
+
+            // Fetch elements from DOM
+            const booksGrid = document.getElementById('books-grid');
+            const searchInput = document.getElementById('search-input');
+            const categoryFilter = document.getElementById('category-filter');
+            const cartCountBadge = document.getElementById('cart-count');
+
+            // Core framework function to display standard cards dynamically
+            function displayBooks(booksList) {
+                booksGrid.innerHTML = '';
+
+                if (booksList.length === 0) {
+                    booksGrid.innerHTML = `<p style="grid-column: 1/-1; text-align:center; color:#888;">No books found matching your criteria.</p>`;
+                    return;
+                }
+
+                booksList.forEach(book => {
+                    const bookCard = document.createElement('div');
+                    bookCard.classList.add('book-card');
+
+                    bookCard.innerHTML = `
+            <div>
+                <div class="book-cover">📖 Cover Art</div>
+                <div class="book-title">${book.title}</div>
+                <div class="book-author">by ${book.author}</div>
+            </div>
+            <div>
+                <div class="book-price">$${book.price.toFixed(2)}</div>
+                <button class="btn-add-cart" onclick="addToCart()">Add to Cart</button>
+            </div>
+        `;
+                    booksGrid.appendChild(bookCard);
+                });
+            }
+
+            // State engine processing text filters and category options simultaneously
+            function filterBooks() {
+                const searchTerm = searchInput.value.toLowerCase();
+                const selectedCategory = categoryFilter.value;
+
+                const filtered = booksData.filter(book => {
+                    const matchesSearch = book.title.toLowerCase().includes(searchTerm) ||
+                        book.author.toLowerCase().includes(searchTerm);
+                    const matchesCategory = selectedCategory === 'all' || book.category === selectedCategory;
+
+                    return matchesSearch && matchesCategory;
+                });
+
+                displayBooks(filtered);
+            }
+
+            // Interactive shopping cart functional listener logic
+            function addToCart() {
+                cartCount++;
+                cartCountBadge.textContent = cartCount;
+            }
+
+            // DOM Event Listeners for continuous UI binding
+            searchInput.addEventListener('input', filterBooks);
+            categoryFilter.addEventListener('change', filterBooks);
+
+            // Bootstrapping phase: Initial page compilation render
+            displayBooks(booksData);
+
+    </script>
+    
+</body>
+
+</html>

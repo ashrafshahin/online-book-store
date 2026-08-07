@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="shortcut icon" href="../../Desktop/shahin/hero.JPG" type="image/x-icon">
+    <title>Online Book Store - ashraf shahin</title>
+    
+    <!-- Font Awesome  -->
+    <link rel="stylesheet" href="https://cloudflare.com">
+    
+    <link rel="stylesheet" href="./css/bootstrap.min.css"> 
+    <link rel="stylesheet" href="./css/style.css">
+    
+</head>
+<body>
+
+
+    <nav class="navbar">
+        <a href="#" class="nav-brand"><i class="fa-solid fa-book-open"></i>Online Book Store </a>
+    
+        <div class="hamburger" id="mobile-menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    
+        <ul class="nav-links" id="nav-list">
+            <li><a href="index.html" class="active"><i class="fa-solid fa-house"></i> Home</a></li>
+            <li><a href="books.html"><i class="fa-solid fa-book"></i> Books</a></li>
+            <li><a href="user.html"><i class="fa-solid fa-book"></i> My Profile</a></li>
+            <li><a href="admin.html"><i class="fa-solid fa-book"></i> Admin</a></li>
+            <li>
+                <a href="cart.html" class="cart-icon-container">
+                    <i class="fa-solid fa-cart-shopping"></i> Cart
+                    <span class="cart-badge" id="cart-count">3</span>
+                </a>
+            </li>
+            <li><a href="checkout.html"><i class="fa-solid fa-credit-card"></i> Checkout</a></li>
+            <li><a href="login.html" class="btn-login"><i class="fa-solid fa-right-to-bracket"></i> Login</a></li>
+            <li><a href="register.html" class="btn-register"><i class="fa-solid fa-user-plus"></i> Register</a></li>
+        </ul>
+    </nav>
+
+    <!-- hero Section -->
+    <section class="hero-bookstore">
+    <div class="hero-container">
+        <div class="hero-content">
+            <span class="hero-badge">Discover & Read</span>
+            <h1>Find Your Next Great Adventure Today</h1>
+            <p>Explore thousands of bestsellers, rare editions, and indie gems curated just for book lovers. Fast
+                shipping and cozy reads await.</p>
+            <div class="hero-buttons">
+                <a href="#shop" class="btn-primary">Browse Catalog</a>
+                <a href="#genres" class="btn-secondary">Explore Genres</a>
+            </div>
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <strong>15K+</strong>
+                    <span>Books Available</span>
+                </div>
+                <div class="stat-item">
+                    <strong>4.9/5</strong>
+                    <span>Reader Rating</span>
+                </div>
+            </div>
+        </div>
+        <div class="hero-visual">
+            <div class="book-card-mockup">
+                <div class="book-cover">
+                    <span>Bestseller</span>
+                </div>
+                <div class="book-info">
+                    <h3>The Art of Quiet Minds</h3>
+                    <p>By Elena Vance</p>
+                    <div class="price-row">
+                        <span class="price">$24.99</span>
+                        <span class="rating">★ 4.9</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </section>
+
+    <!-- featured books Section -->
+    <section class="featured-books">
+        <div class="container">
+            <div class="section-header">
+                <h2>Featured Books</h2>
+                <p>Explore our handpicked collection of this week's top reads.</p>
+            </div>
+    
+            <div class="books-grid">
+                <!-- Book Card 1 -->
+                <div class="book-card">
+                    <div class="book-image">
+                        <span class="badge sale">Sale</span>
+                        <img src="https://unsplash.com" alt="The Midnight Library">
+                        <div class="overlay">
+                            <button class="action-btn" title="Add to Wishlist">❤️</button>
+                            <button class="action-btn" title="Quick View">👁️</button>
+                        </div>
+                    </div>
+                    <div class="book-info">
+                        <span class="category">Fiction</span>
+                        <h3 class="book-title">The Midnight Library</h3>
+                        <p class="author">by Matt Haig</p>
+                        <div class="price-rating">
+                            <div class="price">
+                                <span class="current-price">$14.99</span>
+                                <span class="old-price">$19.99</span>
+                            </div>
+                            <div class="rating">⭐️ 4.8</div>
+                        </div>
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                    </div>
+                </div>
+    
+                <!-- Book Card 2 -->
+                <div class="book-card">
+                    <div class="book-image">
+                        <span class="badge new">New</span>
+                        <img src="https://unsplash.com" alt="Atomic Habits">
+                        <div class="overlay">
+                            <button class="action-btn" title="Add to Wishlist">❤️</button>
+                            <button class="action-btn" title="Quick View">👁️</button>
+                        </div>
+                    </div>
+                    <div class="book-info">
+                        <span class="category">Self-Help</span>
+                        <h3 class="book-title">Atomic Habits</h3>
+                        <p class="author">by James Clear</p>
+                        <div class="price-rating">
+                            <div class="price">
+                                <span class="current-price">$16.20</span>
+                            </div>
+                            <div class="rating">⭐️ 4.9</div>
+                        </div>
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                    </div>
+                </div>
+    
+                <!-- Book Card 3 -->
+                <div class="book-card">
+                    <div class="book-image">
+                        <img src="https://unsplash.com" alt="The Alchemist">
+                        <div class="overlay">
+                            <button class="action-btn" title="Add to Wishlist">❤️</button>
+                            <button class="action-btn" title="Quick View">👁️</button>
+                        </div>
+                    </div>
+                    <div class="book-info">
+                        <span class="category">Philosophy</span>
+                        <h3 class="book-title">The Alchemist</h3>
+                        <p class="author">by Paulo Coelho</p>
+                        <div class="price-rating">
+                            <div class="price">
+                                <span class="current-price">$12.50</span>
+                            </div>
+                            <div class="rating">⭐️ 4.7</div>
+                        </div>
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                    </div>
+                </div>
+    
+                <!-- Book Card 4 -->
+                <div class="book-card">
+                    <div class="book-image">
+                        <span class="badge hot">Hot</span>
+                        <img src="https://unsplash.com" alt="Educated">
+                        <div class="overlay">
+                            <button class="action-btn" title="Add to Wishlist">❤️</button>
+                            <button class="action-btn" title="Quick View">👁️</button>
+                        </div>
+                    </div>
+                    <div class="book-info">
+                        <span class="category">Biography</span>
+                        <h3 class="book-title">Educated</h3>
+                        <p class="author">by Tara Westover</p>
+                        <div class="price-rating">
+                            <div class="price">
+                                <span class="current-price">$15.00</span>
+                                <span class="old-price">$18.00</span>
+                            </div>
+                            <div class="rating">⭐️ 4.6</div>
+                        </div>
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- categories Section -->
+    <section class="categories-section">
+        <div class="container">
+            <h2>Book Categories</h2>
+            <div class="category-grid">
+                <div class="category-card">
+                    <i class="fa fa-book" aria-hidden="true"></i>
+                    <h3>Fiction</h3>
+                </div>
+                <div class="category-card">
+                    <i class="fa fa-flask" aria-hidden="true"></i>
+                    <h3>Science</h3>
+                </div>
+                <div class="category-card">
+                    <i class="fa fa-university" aria-hidden="true"></i>
+                    <h3>History</h3>
+                </div>
+                <div class="category-card">
+                    <i class="fa fa-child" aria-hidden="true"></i>
+                    <h3>Kids</h3>
+                </div>
+                <div class="category-card">
+                    <i class="fa fa-book" aria-hidden="true"></i>
+                    <h3>Fiction</h3>
+                </div>
+                <div class="category-card">
+                    <i class="fa fa-flask" aria-hidden="true"></i>
+                    <h3>Science</h3>
+                </div>
+                <div class="category-card">
+                    <i class="fa fa-university" aria-hidden="true"></i>
+                    <h3>History</h3>
+                </div>
+                <div class="category-card">
+                    <i class="fa fa-child" aria-hidden="true"></i>
+                    <h3>Kids</h3>
+                </div>
+                <div class="category-card">
+                    <i class="fa fa-book" aria-hidden="true"></i>
+                    <h3>Fiction</h3>
+                </div>
+                <div class="category-card">
+                    <i class="fa fa-flask" aria-hidden="true"></i>
+                    <h3>Science</h3>
+                </div>
+                <div class="category-card">
+                    <i class="fa fa-university" aria-hidden="true"></i>
+                    <h3>History</h3>
+                </div>
+                <div class="category-card">
+                    <i class="fa fa-child" aria-hidden="true"></i>
+                    <h3>Kids</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- latest books Section -->
+    <section class="latest-books-section">
+        <div class="section-container">
+    
+            <!-- Section Header -->
+            <div class="section-header">
+                <h2 class="section-title">Latest Releases</h2>
+                <p class="section-subtitle">Explore our newest additions to the shelves</p>
+            </div>
+    
+            <!-- Books Grid Container -->
+            <div class="books-grid">
+    
+                <!-- Book Card 1 -->
+                <div class="book-card">
+                    <div class="book-badge">New</div>
+                    <div class="book-cover">
+                        <!-- Replace URL with your actual book cover image path -->
+                        <img src="https://unsplash.com" alt="Book Cover">
+                    </div>
+                    <div class="book-info">
+                        <span class="book-category">Fiction</span>
+                        <h3 class="book-title">The Midnight Library</h3>
+                        <p class="book-author">Matt Haig</p>
+                        <div class="book-footer">
+                            <span class="book-price">$14.99</span>
+                            <button class="add-to-cart-btn" aria-label="Add to Cart">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+    
+                <!-- Book Card 2 -->
+                <div class="book-card">
+                    <div class="book-badge">New</div>
+                    <div class="book-cover">
+                        <img src="https://unsplash.com" alt="Book Cover">
+                    </div>
+                    <div class="book-info">
+                        <span class="book-category">Sci-Fi</span>
+                        <h3 class="book-title">Project Hail Mary</h3>
+                        <p class="book-author">Andy Weir</p>
+                        <div class="book-footer">
+                            <span class="book-price">$16.50</span>
+                            <button class="add-to-cart-btn" aria-label="Add to Cart">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+    
+                <!-- Book Card 3 -->
+                <div class="book-card">
+                    <div class="book-badge">New</div>
+                    <div class="book-cover">
+                        <img src="https://unsplash.com" alt="Book Cover">
+                    </div>
+                    <div class="book-info">
+                        <span class="book-category">Self-Help</span>
+                        <h3 class="book-title">Atomic Habits</h3>
+                        <p class="book-author">James Clear</p>
+                        <div class="book-footer">
+                            <span class="book-price">$12.00</span>
+                            <button class="add-to-cart-btn" aria-label="Add to Cart">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+    
+                <!-- Book Card 4 -->
+                <div class="book-card">
+                    <div class="book-badge">New</div>
+                    <div class="book-cover">
+                        <img src="https://unsplash.com" alt="Book Cover">
+                    </div>
+                    <div class="book-info">
+                        <span class="book-category">Mystery</span>
+                        <h3 class="book-title">The Silent Patient</h3>
+                        <p class="book-author">Alex Michaelides</p>
+                        <div class="book-footer">
+                            <span class="book-price">$15.99</span>
+                            <button class="add-to-cart-btn" aria-label="Add to Cart">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+    
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+        <h2 class="section-title">What Our Readers Say</h2>
+        <div class="testimonial-container">
+            <div class="testimonial-card">
+                <p class="review">"This bookstore is a haven for book lovers. Their collection is unmatched, and the
+                    shipping is incredibly fast!"</p>
+                <h4 class="author">Sarah Jenkins</h4>
+                <span class="role">Verified Reader</span>
+            </div>
+            <div class="testimonial-card">
+                <p class="review">"I found rare editions here that I couldn't find anywhere else. Exceptional customer
+                    service and packaging."</p>
+                <h4 class="author">David Chen</h4>
+                <span class="role">Avid Collector</span>
+            </div>
+            <div class="testimonial-card">
+                <p class="review">"The personalized book recommendations changed my reading habits. Highly recommend their
+                    monthly subscription!"</p>
+                <h4 class="author">Emily Rodriguez</h4>
+                <span class="role">Club Member</span>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Newsletter Section -->
+    <section class="newsletter">
+        <div class="newsletter-content">
+            <h2>Join the Chapter</h2>
+            <p>Subscribe to get updates on new releases, author interviews, and exclusive discounts.</p>
+            <form class="newsletter-form" onsubmit="event.preventDefault();">
+                <input type="email" placeholder="Enter your email address" required aria-label="Email Address">
+                <button type="submit">Subscribe</button>
+            </form>
+        </div>
+    </section>
+
+
+<footer class="bookstore-footer">
+    <div class="footer-container">
+        <div class="footer-col">
+            <h3>ChapterOne</h3>
+            <p>Your favorite destination for discovering new books, timeless classics, and cozy reads.</p>
+        </div>
+
+        <div class="footer-col">
+            <h4>Quick Links</h4>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="books.html">Books</a></li>
+                <li><a href="login.html">Login</a></li>
+                <li><a href="register.html">Register</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-col">
+            <h4>Shopping</h4>
+            <ul>
+                <li><a href="cart.html">My Cart</a></li>
+                <li><a href="checkout.html">Checkout</a></li>
+                <li><a href="account.html">My Account</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-col">
+            <h4>Newsletter</h4>
+            <p>Get weekly book recommendations and special discounts.</p>
+            <form id="newsletter-form">
+                <input type="email" id="newsletter-email" placeholder="Enter your email" required>
+                <button type="submit">Subscribe</button>
+            </form>
+            <span id="newsletter-msg" style="font-size: 0.8rem; margin-top: 5px; display: block;"></span>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <p>&copy; <span id="current-year"></span> Online Book Store. All rights reserved. |  Powered by Ashraf Shahin</p>
+    </div>
+</footer>
+
+
+    <script src="./js/bootstrap.bundle.min.js"></script>
+    <script src="./js/popper.min.js"></script>
+    <script src="./js/bootstrap.min.js"></script>
+    <script src="./js/script.js"></script>
+</body>
+</html>

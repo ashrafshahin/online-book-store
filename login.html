@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapters & Pages | Book Store Login</title>
+    <style>
+        /* Global Reset and Variables */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+:root {
+    --primary-color: #5c3d2e;     /* Deep bookish brown */
+    --accent-color: #b85c38;      /* Terracotta / leather accent */
+    --bg-color: #f7f5f2;          /* Soft parchment paper color */
+    --text-color: #2d2424;        /* Dark ink */
+    --error-color: #d93838;       /* Error red */
+    --border-color: #ccc5b9;     /* Muted border */
+}
+
+body {
+    background-color: var(--bg-color);
+    background-image: linear-gradient(135deg, #f7f5f2 25%, #eae3d2 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    color: var(--text-color);
+}
+
+/* Card Container */
+.login-container {
+    background: #ffffff;
+    padding: 2.5rem;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(92, 61, 46, 0.15);
+    width: 100%;
+    max-width: 420px;
+    border: 1px solid rgba(92, 61, 46, 0.08);
+}
+
+/* Header Styling */
+.login-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.logo {
+    font-size: 3rem;
+    margin-bottom: 0.5rem;
+}
+
+.login-header h1 {
+    color: var(--primary-color);
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+}
+
+.login-header p {
+    font-size: 0.9rem;
+    color: #777;
+}
+
+/* Form Groups */
+.input-group {
+    margin-bottom: 1.25rem;
+    position: relative;
+}
+
+.input-group label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--primary-color);
+}
+
+.input-group input {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+    background-color: #faf9f6;
+}
+
+.input-group input:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 3px rgba(184, 92, 56, 0.15);
+    background-color: #ffffff;
+}
+
+/* Validation Styling */
+.input-group.error input {
+    border-color: var(--error-color);
+    background-color: #fff5f5;
+}
+
+.error-message {
+    color: var(--error-color);
+    font-size: 0.75rem;
+    margin-top: 0.25rem;
+    display: block;
+    height: 15px; /* Prevents layout shifting */
+}
+
+/* Actions Links */
+.form-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.85rem;
+    margin-bottom: 1.5rem;
+}
+
+.remember-me {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    cursor: pointer;
+}
+
+.forgot-link, .login-footer a {
+    color: var(--accent-color);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.forgot-link:hover, .login-footer a:hover {
+    text-decoration: underline;
+}
+
+/* Submit Button */
+.submit-btn {
+    width: 100%;
+    padding: 0.85rem;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.submit-btn:hover {
+    background-color: var(--accent-color);
+}
+
+/* Footer Section */
+.login-footer {
+    text-align: center;
+    margin-top: 2rem;
+    font-size: 0.9rem;
+    border-top: 1px solid #eee;
+    padding-top: 1.2rem;
+}
+
+    </style>
+    
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body>
+    
+    <div class="login-container">
+        <p class="btn btn-primary"><a href="./index.html" class="nav-brand"><i class="fa-solid fa-book-open"></i> 📚 Home Page
+            </a></p>
+        <div class="login-header">
+            <div class="logo"> Login</div> 
+            <h4>Welcome back, bookworm! Please log in to your account.</h4>
+        </div>
+
+        <form id="loginForm" novalidate>
+            <!-- Email Field -->
+            <div class="input-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" placeholder="e.g., reader@bookstore.com">
+                <small class="error-message" id="emailError"></small>
+            </div>
+
+            <!-- Password Field -->
+            <div class="input-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" placeholder="Enter your password">
+                <small class="error-message" id="passwordError"></small>
+            </div>
+
+            <!-- Remember Me & Forgot Password -->
+            <div class="form-actions">
+                <label class="remember-me">
+                    <input type="checkbox"> Remember me
+                </label>
+                <a href="#" class="forgot-link">Forgot Password?</a>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" class="submit-btn">Open My Bookshelf</button>
+        </form>
+
+        <div class="login-footer">
+            <p>New to the club? <a href="./register.html">Create an account</a></p>
+        </div>
+    </div>
+
+    <script >
+        document.getElementById('loginForm').addEventListener('submit', function (event) {
+                // Stop the form from submitting automatically
+                event.preventDefault();
+
+                // Fetch form fields
+                const emailInput = document.getElementById('email');
+                const passwordInput = document.getElementById('password');
+
+                // Fetch error containers
+                const emailError = document.getElementById('emailError');
+                const passwordError = document.getElementById('passwordError');
+
+                // Trackers for validation state
+                let isEmailValid = false;
+                let isPasswordValid = false;
+
+                // 1. Email Validation
+                const emailValue = emailInput.value.trim();
+                const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+
+                if (emailValue === '') {
+                    showError(emailInput, emailError, 'Email address is required.');
+                } else if (!emailPattern.test(emailValue)) {
+                    showError(emailInput, emailError, 'Please enter a valid email address.');
+                } else {
+                    clearError(emailInput, emailError);
+                    isEmailValid = true;
+                }
+
+                // 2. Password Validation
+                const passwordValue = passwordInput.value.trim();
+
+                if (passwordValue === '') {
+                    showError(passwordInput, passwordError, 'Password is required.');
+                } else if (passwordValue.length < 6) {
+                    showError(passwordInput, passwordError, 'Password must be at least 6 characters.');
+                } else {
+                    clearError(passwordInput, passwordError);
+                    isPasswordValid = true;
+                }
+
+                // 3. Successful Validation Logic
+                if (isEmailValid && isPasswordValid) {
+                    alert('🎉 Login successful! Redirecting you to your bookshelf...');
+                    // Replace with your actual redirect logic, like:
+                    // window.location.href = "dashboard.html";
+                    this.reset();
+                }
+            });
+
+            // Helper function to append error classes and messages
+            function showError(inputElement, errorElement, message) {
+                inputElement.parentElement.classList.add('error');
+                errorElement.textContent = message;
+            }
+
+            // Helper function to remove error classes and clear messages
+            function clearError(inputElement, errorElement) {
+                inputElement.parentElement.classList.remove('error');
+                errorElement.textContent = '';
+            }
+
+    </script>
+</body>
+
+</html>
