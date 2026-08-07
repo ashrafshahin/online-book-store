@@ -1,0 +1,23 @@
+
+Project: Online Book Store
+
+Pages: Home, About, Books, Book Details, Cart, Checkout, Contact, Login, Register, Admin Dashboard
+
+Home: Hero, Featured Books, Categories, Latest Books, Testimonials, Newsletter, Footer
+
+User Features: Register, Login, Logout, Edit Profile, Search, Filter, Cart, Checkout, Order History
+
+Admin Features: Dashboard, Manage Books, Categories, Users, Orders, Reports
+
+
+Database: Users, Books, Categories, Orders, Reviews
+
+Technology: HTML5, CSS3, JavaScript, Bootstrap/Tailwind, Node.js, Express.js, MongoDB
+
+Validation: Required fields, Email, Password, Image
+
+Security: JWT, Password Hashing, Protected Routes, Input Validation
+
+Responsive: Mobile, Tablet, Laptop, Desktop
+
+Bonus: Dark Mode, Wishlist, Pagination, Search, Sorting, SEO, Fast Loading, Contact Form, Google Map
